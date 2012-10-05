@@ -152,7 +152,12 @@ class ReCaptchaResponse {
 function recaptcha_check_answer ($privkey, $remoteip, $challenge, $response, $extra_params = array())
 {
 	if ($privkey == null || $privkey == '') {
-		die ("To use reCAPTCHA you must get an API key from <a href='https://www.google.com/recaptcha/admin/create'>https://www.google.com/recaptcha/admin/create</a>");
+		$recaptcha_response = new ReCaptchaResponse();
+		
+		$recaptcha_response->is_valid = false;
+                $recaptcha_response->error = "To use reCAPTCHA you must get an API key from <a href='https://www.google.com/recaptcha/admin/create'>https://www.google.com/recaptcha/admin/create</a>";
+
+		return $recaptcha_response;
 	}
 
 	if ($remoteip == null || $remoteip == '') {
