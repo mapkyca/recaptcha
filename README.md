@@ -11,7 +11,9 @@ that worked quite right or was updated fairly often. I had this kicking around f
 Installation
 ------------
 
-Follow the usual Elgg module installation practices, I.e. put the directory in your /mod.
+ * Follow the usual Elgg module installation practices, I.e. put the directory in your /mod.
+ * Visit reCaptcha.net <http://recaptcha.net> and get public and private keys for your domain
+ * Place these keys in the plugin's settings.
 
 See
 ---
