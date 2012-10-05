@@ -12,4 +12,8 @@
 		<type>elgg_release</type>
 		<version>1.8</version>
 	</requires>
+	<provides>
+		<type>plugin</type>
+		<name>captcha</type>
+	</provides>
 </plugin_manifest>
