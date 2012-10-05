@@ -61,6 +61,8 @@
 			
 			if (!$resp->is_valid) {
 				register_error(elgg_echo('recaptcha:failed'));
+				if ($CONFIG->debug)
+					register_error($resp->error);
 				
 				forward($_SERVER['HTTP_REFERER']);
 			
