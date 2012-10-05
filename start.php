@@ -9,7 +9,7 @@
 	 * @license GNU Public License version 2
 	 */
 	
-	require_once(dirname(__FILE__) . "/vendor/recaptcha-php-1.10/recaptchalib.php");
+	require_once(dirname(__FILE__) . "/vendor/recaptcha-php-1.11/recaptchalib.php");
 	
 	function recaptcha_init()
 	{
