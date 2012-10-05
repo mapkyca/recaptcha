@@ -161,7 +161,12 @@ function recaptcha_check_answer ($privkey, $remoteip, $challenge, $response, $ex
 	}
 
 	if ($remoteip == null || $remoteip == '') {
-		die ("For security reasons, you must pass the remote ip to reCAPTCHA");
+		$recaptcha_response = new ReCaptchaResponse();
+                
+                $recaptcha_response->is_valid = false;
+                $recaptcha_response->error = "For security reasons, you must pass the remote ip to reCAPTCHA";
+
+		return $recaptcha_response;
 	}
 
 	
