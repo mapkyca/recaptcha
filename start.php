@@ -23,7 +23,7 @@
 		if (($actions) && (is_array($actions)))
 		{
 			foreach ($actions as $action)
-				register_plugin_hook("action", $action, "recaptcha_verify_action_hook");
+				elgg_register_plugin_hook("action", $action, "recaptcha_verify_action_hook");
 		}
 		
 		// Now run this stuff, but only once
@@ -52,7 +52,7 @@
 		
 		if ($hook == 'action')
 		{
-			$resp = recaptcha_check_answer (get_plugin_setting('privatekey','recaptcha'),
+			$resp = recaptcha_check_answer (elgg_get_plugin_setting('privatekey','recaptcha'),
                                 $_SERVER["REMOTE_ADDR"],
                                 get_input('recaptcha_challenge_field', '', false),
                                 get_input('recaptcha_response_field', '', false)
