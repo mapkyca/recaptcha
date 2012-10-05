@@ -14,7 +14,7 @@
 	function recaptcha_init()
 	{
 		// Register a function that provides some default override actions
-		elgg_register_plugin_hook('actionlist', 'captcha', 'recaptcha_actionlist_hook');
+		elgg_register_plugin_hook_handler('actionlist', 'captcha', 'recaptcha_actionlist_hook');
 		
 		// Register actions to intercept
 		$actions = array();
@@ -23,7 +23,7 @@
 		if (($actions) && (is_array($actions)))
 		{
 			foreach ($actions as $action)
-				elgg_register_plugin_hook("action", $action, "recaptcha_verify_action_hook");
+				elgg_register_plugin_hook_handler("action", $action, "recaptcha_verify_action_hook");
 		}
 		
 		// Now run this stuff, but only once
