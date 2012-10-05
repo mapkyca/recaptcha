@@ -92,4 +92,4 @@
 		return $returnvalue;
 	}
 	
-	elgg_register_event_handler('init','system','recaptcha_init', 999);
+	elgg_register_event_handler('init','system','recaptcha_init');
