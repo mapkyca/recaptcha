@@ -26,16 +26,6 @@
 				elgg_register_plugin_hook_handler("action", $action, "recaptcha_verify_action_hook");
 		}
 		
-		// Now run this stuff, but only once
-		run_function_once("recaptcha_run_once"); 
-	}
-	
-	/**
-	 * Runonce, make sure environment is ok.
-	 */
-	function recaptcha_run_once()
-	{
-		disable_plugin('captcha');
 	}
 	
 	/**
