@@ -15,6 +15,11 @@ Installation
  * Visit reCaptcha.net <http://recaptcha.net> and get public and private keys for your domain
  * Place these keys in the plugin's settings.
 
+Usage
+-----
+ * Use the view input/captcha in your forms to display the captcha
+ * Listen to the 'actionlist', 'captcha' plugin hook in your plugin's init function, and add to an array of actions which require captcha validation.
+
 See
 ---
 
