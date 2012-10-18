@@ -15,7 +15,13 @@
 	{
 		// Register a function that provides some default override actions
 		elgg_register_plugin_hook_handler('actionlist', 'captcha', 'recaptcha_actionlist_hook');
-		
+	}
+	
+	/**
+	 * Plugins should have by now registered their actions, now collect a list of actions we need to listen to and register them.
+	 */
+	function recaptcha_ready()
+	{
 		// Register actions to intercept
 		$actions = array();
 		$actions = elgg_trigger_plugin_hook('actionlist', 'captcha', null, $actions);
@@ -25,7 +31,6 @@
 			foreach ($actions as $action)
 				elgg_register_plugin_hook_handler("action", $action, "recaptcha_verify_action_hook");
 		}
-		
 	}
 	
 	/**
@@ -82,4 +87,5 @@
 		return $returnvalue;
 	}
 	
-	elgg_register_event_handler('init','system','recaptcha_init', 999);
+	elgg_register_event_handler('init','system','recaptcha_init');
+	elgg_register_event_handler('ready','system','recaptcha_ready');
