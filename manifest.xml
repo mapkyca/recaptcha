@@ -16,4 +16,9 @@
 		<type>plugin</type>
 		<name>captcha</name>
 	</provides>
+	<requires>
+	    <type>priority</type>
+	    <plugin>uservalidationbyemail</plugin>
+	    <priority>after</priority>
+	</requires>
 </plugin_manifest>
