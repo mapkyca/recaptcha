@@ -9,7 +9,7 @@
 	 * @license GNU Public License version 2
 	 */
 	
-	require_once(dirname(__FILE__) . "/vendor/recaptcha-php-1.11/recaptchalib.php");
+	require_once(dirname(__FILE__) . "/vendor/recaptcha/src/autoload.php");
 	
 	function recaptcha_init()
 	{
@@ -47,22 +47,19 @@
 		
 		if ($hook == 'action')
 		{
-			$resp = recaptcha_check_answer (elgg_get_plugin_setting('privatekey','recaptcha'),
-                                $_SERVER["REMOTE_ADDR"],
-                                get_input('recaptcha_challenge_field', '', false),
-                                get_input('recaptcha_response_field', '', false)
-			);
-			
-			
-			if (!$resp->is_valid) {
-				register_error(elgg_echo('recaptcha:failed'));
-				if ($CONFIG->debug)
-					register_error($resp->error);
-				
-				forward($_SERVER['HTTP_REFERER']);
-			
-				return false;
-			}
+		    $recaptcha = new \ReCaptcha\ReCaptcha(elgg_get_plugin_setting('privatekey','recaptcha'));
+		    
+		    $resp = $recaptcha->verify(get_input('g-recaptcha-response'), $_SERVER["REMOTE_ADDR"]);
+		    
+		    if (!$resp->isSuccess()) {
+			    register_error(elgg_echo('recaptcha:failed'));
+			    if ($CONFIG->debug)
+				    register_error($resp->error);
+
+			    forward($_SERVER['HTTP_REFERER']);
+
+			    return false;
+		    }
 		}
 			
 	}
