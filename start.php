@@ -15,6 +15,9 @@
 	{
 		// Register a function that provides some default override actions
 		elgg_register_plugin_hook_handler('actionlist', 'captcha', 'recaptcha_actionlist_hook');
+		
+		// For registration, do our own forwards
+		elgg_unregister_plugin_hook_handler('forward', 'system', 'uservalidationbyemail_after_registration_url');
 	}
 	
 	/**
@@ -59,6 +62,10 @@
 			    forward($_SERVER['HTTP_REFERER']);
 
 			    return false;
+		    } else {
+			// Successful captcha, put that hook back
+			if (is_callable('uservalidationbyemail_after_registration_url'))
+			    elgg_register_plugin_hook_handler('forward', 'system', 'uservalidationbyemail_after_registration_url');
 		    }
 		}
 			
